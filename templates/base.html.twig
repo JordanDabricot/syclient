@@ -1,0 +1,28 @@
+{% extends "header.html.twig" %}
+    {% block body %}
+        <table>
+            <thead>
+            <tr>
+                <th>Numéro Client</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Date Naissance</th>
+                <th>Nombre Commandes</th>
+                <th>Montant total</th>
+                <th>Dernier achat</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            {% for client in clients %}
+                <tbody>
+                    <tr>
+                        <td> {{ client.id }}</td>
+                        <td> {{ client.nom }}</td>
+                        <td> {{ client.prenom }}</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+    {% endblock %}
+    {% block javascripts %}{% endblock %}
+
