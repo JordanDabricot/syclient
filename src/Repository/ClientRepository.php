@@ -13,13 +13,61 @@ class ClientRepository extends ServiceEntityRepository
         parent::__construct($registry, Client::class);
     }
 
-    public function getClientInfo()
+    /**
+     * Methode qui permet de récupérer tous les informations client
+     * @return array
+     */
+    public function getClientsInfo()
     {
-        $em = $this->createQueryBuilder('c');
-        $em->leftJoin('c.id', 'co')
+        $qd = $this->createQueryBuilder('c')
+            ->select('c.id', 'c.nom', 'c.prenom', 'c.email', 'c.dateNaissance', 'COUNT(co.id) as nbCom', 'SUM(co.prix) as somPrix', 'MAX(co.dateCommande) as maxDate')
+            ->leftJoin('c.commande', 'co')
+            ->groupBy('c.id')
             ->getQuery()
-            ->getOneOrNullResult();
-        return $em;
+            ->getResult();
+        return $qd;
+    }
+
+    /**
+     * Methode qui permet d'actualiser les informations client
+     */
+    public function updateClientInfo(array $clientInfos)
+    {
+        $queryBuilder = $this->createQueryBuilder('c');
+        $queryBuilder->update()
+            ->set('c.nom', ':nom')
+            ->set('c.prenom', ':prenom')
+            ->set('c.email', ':email')
+            ->set('c.dateNaissance', ':dateNaissance')
+            ->where('c.id = :id')
+            ->setParameter('id', $clientInfos['idClient'])
+            ->setParameter('nom', $clientInfos['nomClient'])
+            ->setParameter('prenom', $clientInfos['prenomClient'])
+            ->setParameter('email', $clientInfos['emailClient'])
+            ->setParameter('dateNaissance', $clientInfos['dateNaissanceClient'])
+            ->getQuery()
+            ->execute();
+    }
+
+    public function deleteClientInfo($clientId)
+    {
+        $this->createQueryBuilder('c')
+            ->delete()
+            ->where('c.id = :id')
+            ->setParameter('id', $clientId)
+            ->getQuery()
+            ->execute();
+    }
+
+    public function createClientInfo(array $clientInfo)
+    {
+        $client = new client();
+        $client->setNom($clientInfo['nomClient']);
+        $client->setPrenom($clientInfo['prenomClient']);
+        $client->setEmail($clientInfo['emailClient']);
+        $client->setDateNaissance($clientInfo['dateNaissanceClient']);
+        $this->_em->persist($client);
+        $this->_em->flush();
     }
 
     /*

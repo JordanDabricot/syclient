@@ -32,16 +32,16 @@ class Client
     private $email;
 
     /**
-     * @ORM\Column(name="date_naissance", type="date")
+     * @ORM\Column(name="date_naissance", type="datetime")
      */
     private $dateNaissance;
 
     /**
      * @var integer
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\CompteConnecteur", mappedBy="connecteur")
+     * @ORM\OneToMany(targetEntity="App\Entity\Commande", mappedBy="client")
      */
-    private $compteConnecteur;
+    private $commande;
 
     /**
      * @return mixed

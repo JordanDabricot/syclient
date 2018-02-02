@@ -17,12 +17,30 @@
             {% for client in clients %}
                 <tbody>
                     <tr>
-                        <td> {{ client.id }}</td>
-                        <td> {{ client.nom }}</td>
-                        <td> {{ client.prenom }}</td>
+                        <td>{{ client.id }}</td>
+                        <td>{{ client.nom }}</td>
+                        <td>{{ client.prenom }}</td>
+                        <td>{{ client.email }}</td>
+                        <td>{{ client.dateNaissance.format("d/m/Y") }}</td>
+                        <td>{{ client.nbCom }} </td>
+                        <td>{{ client.somPrix }}</td>
+                        <td>{{ client.maxDate }}</td>
+                        <td>
+                            <form method="post" action="/process">
+                                <button class="btn waves-effect waves-light" type="submit" name="edit" value="{{ client.id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                <button class="btn waves-effect waves-light" type="submit" id="delete" name="delete" value="{{ client.id }}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </form>
+                        </td>
                     </tr>
                 </tbody>
             {% endfor %}
+        </table>
+        <div class="row">
+            <a href="/create">
+                <button class="btn waves-effect waves-light" type="submit" name="createClient">Inscription client<i class="fa fa-user-plus" aria-hidden="true"></i></button>
+            </a>
+        </div>
     {% endblock %}
-    {% block javascripts %}{% endblock %}
+    {% block javascripts %}
+    {% endblock %}
 

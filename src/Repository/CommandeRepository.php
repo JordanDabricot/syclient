@@ -13,14 +13,14 @@ class CommandeRepository extends ServiceEntityRepository
         parent::__construct($registry, Commande::class);
     }
 
-    public function getClientInfo()
+    public function deleteCommandeClientInfo($clientId)
     {
-         return $this->createQueryBuilder('co')
-            ->select('co.client', 'c.nom')
-            ->leftJoin('co.client', 'c')
-            ->groupBy('co.client, co.id, co.prix, co.dateCommande')
+        $this->createQueryBuilder('co')
+            ->delete()
+            ->where('co.client = :id')
+            ->setParameter('id', $clientId)
             ->getQuery()
-             ->getResult();
+            ->execute();
     }
 
     /*

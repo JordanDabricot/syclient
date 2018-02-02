@@ -27,15 +27,7 @@ class Commande
     private $dateCommande;
 
     /**
-     * @var integer
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="compteConnecteur")
-     * @ORM\JoinColumn(name="id_connecteur", referencedColumnName="id", nullable=false)
-     */
-    private $clientCommande;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Client")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="commande")
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     private $client;
@@ -45,38 +37,6 @@ class Commande
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
      */
     private $article;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->clientCommande = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add clientCommande
-     *
-     * @param \App\Entity\clientCommande $clientCommande
-     *
-     * @return clientCommande
-     */
-    public function addclientCommande(\App\Entity\Client $clientCommande)
-    {
-        $this->clientCommande[] = $clientCommande;
-
-        return $this;
-    }
-
-    /**
-     * Get clientCommande
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getClientCommande()
-    {
-        return $this->clientCommande;
-    }
 
     /**
      * @return mixed
