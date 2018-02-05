@@ -20,9 +20,10 @@ class ClientRepository extends ServiceEntityRepository
     public function getClientsInfo()
     {
         $qd = $this->createQueryBuilder('c')
-            ->select('c.id', 'c.nom', 'c.prenom', 'c.email', 'c.dateNaissance', 'COUNT(co.id) as nbCom', 'SUM(co.prix) as somPrix', 'MAX(co.dateCommande) as maxDate')
+            ->select('c.id', 'c.nom', 'c.prenom', 'c.email', 'c.dateNaissance', 'COUNT(co.id) as nbCom', 'MAX(co.dateCommande) as maxDate, SUM(a.prixUnitaire) as prixMax')
             ->leftJoin('c.commande', 'co')
-            ->groupBy('c.id')
+            ->leftjoin('co.article', 'a')
+            ->groupBy('c.id', 'a.nomArticle')
             ->getQuery()
             ->getResult();
         return $qd;
@@ -65,7 +66,7 @@ class ClientRepository extends ServiceEntityRepository
         $client->setNom($clientInfo['nomClient']);
         $client->setPrenom($clientInfo['prenomClient']);
         $client->setEmail($clientInfo['emailClient']);
-        $client->setDateNaissance($clientInfo['dateNaissanceClient']);
+        $client->setDateNaissance(\DateTime::createFromFormat('Y-m-d', $clientInfo['dateNaissanceClient']));
         $this->_em->persist($client);
         $this->_em->flush();
     }

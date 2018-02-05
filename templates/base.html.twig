@@ -22,8 +22,12 @@
                         <td>{{ client.prenom }}</td>
                         <td>{{ client.email }}</td>
                         <td>{{ client.dateNaissance.format("d/m/Y") }}</td>
-                        <td>{{ client.nbCom }} </td>
-                        <td>{{ client.somPrix }}</td>
+                        <td>
+                            <form method="post" action="/commande">
+                                <input type="submit" name="com" value="{{ client.nbCom }}">
+                            </form>
+                        </td>
+                        <td>{{ client.prixMax }}</td>
                         <td>{{ client.maxDate }}</td>
                         <td>
                             <form method="post" action="/process">

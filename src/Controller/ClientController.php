@@ -87,7 +87,6 @@ class ClientController extends Controller
                 'emailClient' => $request->request->get("email"),
                 'dateNaissanceClient' => $request->request->get("dateNaissance")
             );
-            var_dump($dataPost);
             $this->getDoctrine()->getManager()->getRepository('App:Client')->createClientInfo($dataPost);
             return $this->redirect("/");
         }

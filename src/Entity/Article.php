@@ -19,7 +19,7 @@ class Article
     /**
      * @ORM\Column(name="nom_article", type="string", length=100)
      */
-    private $nom;
+    private $nomArticle;
 
     /**
      * @ORM\Column(name="prix_unitaire", type="decimal", scale=2)
@@ -52,15 +52,15 @@ class Article
      */
     public function getNom()
     {
-        return $this->nom;
+        return $this->nomArticle;
     }
 
     /**
      * @param mixed $nom
      */
-    public function setNom($nom)
+    public function setNom($nomArticle)
     {
-        $this->nom = $nom;
+        $this->nomArticle = $nomArticle;
     }
 
     /**

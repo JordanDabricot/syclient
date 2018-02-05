@@ -1,0 +1,23 @@
+{% extends "header.html.twig" %}
+    {% block body %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Numéro Commande</th>
+                    <th>Date Commande</th>
+                    <th>Nombre d'articles</th>
+                    <th>Montant HT</th>
+                    <th>Montant TTC</th>
+                </tr>
+            </thead>
+            {% for com in commande %}
+                <tbody>
+                    <tr>
+                        <td>{{ commande.id }}</td>
+                        <td>{{ commande.date.format("d/m/Y") }}</td>
+                        <td>{{ client.prenom }}</td>
+                        <td>{{ client.email }}</td>
+                        <td>{{ client.dateNaissance.format("d/m/Y") }}</td>
+
+            {% endfor %}
+    {% endblock %}

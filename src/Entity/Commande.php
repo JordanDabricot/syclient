@@ -17,11 +17,6 @@ class Commande
     private $id;
 
     /**
-     * @ORM\Column(name="prix", type="decimal", scale=2)
-     */
-    private $prix;
-
-    /**
      * @ORM\Column(name="date_commande", type="date")
      */
     private $dateCommande;
