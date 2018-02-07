@@ -1,0 +1,23 @@
+{% extends "header.html.twig" %}
+    {% block body %}
+        <table>
+            <thead>
+            <tr>
+                <th>Numéro Article</th>
+                <th>Nom Article</th>
+                <th>Prix Unitaire</th>
+                <th>Quantité en stock</th>
+            </tr>
+            </thead>
+            {% for art in article %}
+                <tbody>
+                    <tr>
+                        <td>{{ art.id }}</td>
+                        <td>{{ art.nom }}</td>
+                        <td>{{ art.prixUnitaire }}</td>
+                        <td>{{ art.quantiteArticle }}</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    {% endblock %}

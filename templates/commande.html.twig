@@ -1,0 +1,27 @@
+{% extends "header.html.twig" %}
+    {% block body %}
+        <table>
+            <thead>
+            <tr>
+                <th>Numéro Commande</th>
+                <th>Date de commande</th>
+                <th>Nombre d'articles</th>
+                <th>Montant HT</th>
+                <th>Montant TTC</th>
+            </tr>
+            </thead>
+            {% for com in commande %}
+                <tbody>
+                    <tr>
+                        <form method='post' action='/article'>
+                            <td><button name='idArt' value="{{ com.id }}">{{ com.id }}</button></td>
+                        </form>
+                        <td>{{ com.dateCommande.format('d/m/Y') }}</td>
+                        <td>{{ com.nombreArticle }}</td>
+                        <td>{{ com.prix }}</td>
+                        <td>{{ (com.prix*20/100)+com.prix }}</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    {% endblock %}

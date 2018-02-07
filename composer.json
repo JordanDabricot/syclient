@@ -4,6 +4,7 @@
     "require": {
         "php": "^7.0.8",
         "ext-iconv": "*",
+        "sensio/framework-extra-bundle": "^5.1",
         "sensiolabs/security-checker": "^4.1",
         "symfony/console": "^3.4",
         "symfony/flex": "^1.0",
@@ -62,6 +63,6 @@
             "id": "",
             "allow-contrib": false
         },
-        "symfony.id": "01C58NQEMM1GEJ646Q5YMXYBJ8"
+        "symfony.id": "01C5JKZJN2Z47MVJHA2QN8TEC4"
     }
 }

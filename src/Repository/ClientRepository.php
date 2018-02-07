@@ -65,7 +65,7 @@ class ClientRepository extends ServiceEntityRepository
         $client->setNom($clientInfo['nomClient']);
         $client->setPrenom($clientInfo['prenomClient']);
         $client->setEmail($clientInfo['emailClient']);
-        $client->setDateNaissance($clientInfo['dateNaissanceClient']);
+        $client->setDateNaissance(\DateTime::createFromFormat('Y-m-d', $clientInfo['dateNaissanceClient']));
         $this->_em->persist($client);
         $this->_em->flush();
     }

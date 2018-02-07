@@ -22,6 +22,11 @@ class Commande
     private $prix;
 
     /**
+     * @ORM\Column(name="nombre_article", type="integer")
+     */
+    private $nombreArticle;
+
+    /**
      * @ORM\Column(name="date_commande", type="date")
      */
     private $dateCommande;
@@ -33,8 +38,8 @@ class Commande
     private $client;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Article")
-     * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="commande")
+     * @ORM\JoinColumn(name="id_article", referencedColumnName="id")
      */
     private $article;
 
@@ -117,6 +122,23 @@ class Commande
     {
         $this->article = $article;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getNombreArticle()
+    {
+        return $this->nombreArticle;
+    }
+
+    /**
+     * @param mixed $nombreArticle
+     */
+    public function setNombreArticle($nombreArticle)
+    {
+        $this->nombreArticle = $nombreArticle;
+    }
+
 
 
 }

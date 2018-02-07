@@ -32,7 +32,7 @@ class Client
     private $email;
 
     /**
-     * @ORM\Column(name="date_naissance", type="datetime")
+     * @ORM\Column(name="date_naissance", type="date")
      */
     private $dateNaissance;
 
